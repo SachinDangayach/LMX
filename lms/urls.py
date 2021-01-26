@@ -22,6 +22,9 @@ from lms.views.blog.blog_view import (
 )
 from lms.views.course.course_views import (
     CourseListView,
+    course_list,
+    course_details,
+    course_subscribe
 )
 from lms.views.course.grading_scheme_view import (
     GradingSchemeUpdateView,
@@ -62,12 +65,15 @@ urlpatterns = [
     # LMS URLS #
 
     # /home/
-    path(
-        route='',
-        view=CourseListView.as_view(),
-        name='home'
-    ),
-
+    # path(
+    #     route='',
+    #     view=CourseListView.as_view(),
+    #     name='home'
+    # ),
+    path('',course_list,name='home'),
+    path('<int:page>',course_list,name='home'),
+    path('coursedetails/<int:pk>/',course_details),
+    path('subscribe/<int:pk>/',course_subscribe),
     # Blog URLS #
 
     # /home/blog
